@@ -1,9 +1,8 @@
 var express = require("express");
 var router = express.Router();
-var models = require("../models");
+var models = require('../models');
 
 router.get("/", (req, res) => {
-  console.log("Esto es un mensaje para ver en consola");
   models.carrera
     .findAll({
       attributes: ["id", "nombre"]
@@ -59,7 +58,7 @@ router.put("/:id", (req, res) => {
           res.sendStatus(500)
         }
       });
-    findCarrera(req.params.id, {
+  findCarrera(req.params.id, {
     onSuccess,
     onNotFound: () => res.sendStatus(404),
     onError: () => res.sendStatus(500)

@@ -4,8 +4,20 @@ module.exports = (sequelize, DataTypes) => {
     nombre: DataTypes.STRING,
     id_carrera: DataTypes.INTEGER
   }, {});
-  materia.associate = function(models) {
-    
+
+
+  materia.associate = function (models) {
+    materia.belongsTo(models.carrera, {
+      as: 'Materia-Carrera',
+      foreignKey: 'id_carrera'
+    })
   };
+
+  materia.associate = function (models) {
+    materia.hasMany(models.alumno,{
+      as:'alumno-materia',
+      foreignKey:'id_alumno'
+    })
+  }
   return materia;
 };
